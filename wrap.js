@@ -1,22 +1,23 @@
 
 const wrap = (str, maxLeng) => {
-    let returnVal = [];
-
-    if (str.length === 0){
+    if (str.length <= maxLeng){
         return str; 
     };
 
+const indexOfSpace=str.lastIndexOf(' ',maxLeng);
 
+let split;
+let offset;
+if(indexOfSpace>-1){
+    split=indexOfSpace;
+    offset=1;
+}
+else{
+    split=maxLeng;
+    offset=0;
+}
 
-    for (let i = 0; i < str.length; i++){
-        if (i === maxLeng){
-            returnVal.push(currLine.slice(0, maxLeng));
-            currLine = currLine.slice(maxLeng + 1);
-        }
-    }
-
-    console.log(returnVal.join('\n'));
-    return returnVal.join('\n');
+return str.substring(0,split)+'\n'+wrap(str.substring(split+offset),maxLeng);
 };
 
 module.exports = wrap;
